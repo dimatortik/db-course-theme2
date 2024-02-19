@@ -11,7 +11,7 @@ export default hopeTheme({
 
   editLink: false,
 
-  repo: "dimatortik/db-course-hope-template",
+  repo: "dimatortik/db-course-theme2",
 
   docsDir: "docs",
   // navbar
@@ -21,11 +21,11 @@ export default hopeTheme({
   sidebar,
 
 
-  footer: "ECL 2.0 Licensed | Copyright © [YYYY] [Your Name] ",
+  footer: "ECL 2.0 Licensed | Copyright © 2024 Zanuda Dmytro ",
 
   displayFooter: true,
 
- // integrate plantuml into theme 
+
 
   
   plugins: 

@@ -3,10 +3,10 @@ import theme from "./theme.js";
 import MarkdownItPlantuml from 'markdown-it-plantuml';
 
 export default defineUserConfig({
-  base: "/db-course-hope-template/",
+  base: "/db-course-theme2/",
 
   lang: "en-US",
-  title: "Назва проєкту",
+  title: "Система управління відкритими даними",
   description: "Лабораторні роботи",
 
   theme,
