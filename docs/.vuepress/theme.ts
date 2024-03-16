@@ -20,17 +20,11 @@ export default hopeTheme({
   // sidebar
   sidebar,
 
-
   footer: "ECL 2.0 Licensed | Copyright © 2024 Zanuda Dmytro ",
 
   displayFooter: true,
 
-
-
-  
-  plugins: 
-  {
-  
+  plugins: {
     // All features are enabled for demo, only preserve features you need here
     mdEnhance: {
       align: true,
