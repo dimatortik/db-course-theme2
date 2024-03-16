@@ -5,6 +5,21 @@
     padding: 1em;"
     >
 
+@startuml
+    actor "Користувач" as User
+    
+    usecase "<b>UserLogin<b> \n Вхід в систему" as UC_1
+    usecase "<b>UserExit<b> \n Вихід з системи" as UC_2
+    usecase "<b>UserEditSuggestions<b> \n Пропозиція оновити дані " as UC_3
+    usecase "<b>UserUploadSuggestion<b> \n Пропозиція завантажити \n нові дані " as UC_4
+    usecase "<b>VisualizeData<b> \n Візуалізація даних" as UC_5
 
+    User -r-> UC_1
+    User -u-> UC_3
+    User -l-> UC_2
+    User -u-> UC_4
+    User -u-> UC_5
+
+@enduml
 
 </center>
