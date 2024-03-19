@@ -5,6 +5,17 @@
     padding: 1em;"
     >
 
+@startuml
+    actor "Відвідувач" as Visitor
+    
+    usecase "<b>GuestSearch<b> \n Пошук даних" as UC_1
+    usecase "<b>GuestDownload<b> \n Завантаження даних з системи" as UC_2
+    usecase "<b>GuestRegistration<b> \n Реєстрація відвідувача в системі" as UC_3
 
+    Visitor -u-> UC_1
+    Visitor -u-> UC_3
+    Visitor -u-> UC_2
+
+@enduml
 
 </center>

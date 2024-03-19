@@ -5,6 +5,32 @@
     padding: 1em;"
     >
 
+@startuml
+    |Користувач|
+        start
+        :   Вибирає опцію 
+        "Візуалізувати дані";
+    |Система|
+        : Пропонує обрати формат 
+            візуалізації даних;
+    |Користувач|
+        : Вибирає формат 
+          візуалізації;
+    |Система|
+        : Перевіряє дані на помилки;
+        note right #ffaaaa
+        <b> Можливо
+        <b> InsufficientDataForVisualization,
+        <b> InvalidVisualizationType,
+        <b> DataProcessingError
+        end note
+        
+        :Представляє дані у 
+         вибраному форматі;
+    |Користувач|
+        :Переглядає результат візуалізації;
+        stop;
 
+@enduml
 
 </center>
