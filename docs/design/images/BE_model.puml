@@ -1,0 +1,103 @@
+<center style="
+    border-radius:4px;
+    border: 1px solid #cfd7e6;
+    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
+    padding: 1em;"
+    >
+
+@startuml
+
+
+entity User <<ENTITY>> #fe500a 
+entity User.id <<NUMBER>> #ffe396
+entity User.first_name <<TEXT>> #ffe396
+entity User.last_name <<TEXT>> #ffe396
+entity User.login <<TEXT>> #ffe396
+entity User.email <<TEXT>> #ffe396
+entity User.password <<TEXT>> #ffe396
+User.id --* User
+User.login -l-* User
+User.email --* User
+User.password --* User
+User.first_name -r-* User
+User.last_name --* User
+
+entity Role <<ENTITY>> #fe500a
+entity Role.id <<NUMBER>> #ffe396
+entity Role.alias <<TEXT>> #ffe396
+Role.id -r-* Role
+Role.alias -d-* Role
+
+entity Permission_Role <<ENTITY>> #fe500a
+
+entity Permission <<ENTITY>> #fe500a
+entity Permission.id <<NUMBER>> #ffe396
+entity Permission.alias <<TEXT>> #ffe396
+Permission.id -l-* Permission
+Permission.alias -r-* Permission
+
+entity Access <<ENTITY>> #fe500a
+entity Access.id <<NUMBER>> #ffe396
+Access.id --* Access
+
+entity Publication <<ENTITY>> #fe500a
+entity Publication.id <<NUMBER>> #ffe396
+entity Publication.title <<TEXT>> #ffe396
+entity Publication.description <<TEXT>> #ffe396  
+entity Publication.uploadedAt <<Datetime>> #ffe396
+entity Publication.updatedAt <<Datetime>> #ffe396
+entity Publication.body <<TEXT>> #ffe396
+entity Publication.rating <<TEXT>> #ffe396
+Publication.id -u-* Publication
+Publication.title -u-* Publication
+Publication.description -u-* Publication
+Publication.uploadedAt -u-* Publication
+Publication.updatedAt -l-* Publication
+Publication.body -d-* Publication
+Publication.rating -d-* Publication
+
+entity Data_Publication <<ENTITY>> #fe500a
+
+entity Path <<ENTITY>> #fe500a
+entity Path.id <<NUMBER>> #ffe396
+entity Path.path <<TEXT>> #ffe396
+Path.id -l-* Path
+Path.path -r-* Path
+
+entity Data <<ENTITY>> #fe500a
+entity Data.id <<NUMBER>> #ffe396
+entity Data.alias <<TEXT>> #ffe396
+entity Data.type <<TEXT>> #ffe396
+entity Data.size <<NUMBER>> #ffe396
+entity Data.uploadedAt <<Datetime>> #ffe396
+Data.id -r-* Data
+Data.alias -u-* Data
+Data.type -l-* Data
+Data.size -d-* Data
+Data.uploadedAt -d-* Data
+
+entity Category <<ENTITY>> #fe500a
+entity Category.id <<NUMBER>> #ffe396
+entity Category.alias <<TEXT>> #ffe396
+entity Category.description <<TEXT>> #ffe396
+Category.id --* Category
+Category.alias --* Category
+Category.description -r-* Category
+
+
+User "0,*"-u-"1,1" Role
+Permission_Role "0,*"--"1,1" Role
+Permission "1,1"---"0,*" Permission_Role
+User "1,1"-d-"0,*" Access
+Access "0,*"-d-"1,1" Publication
+Category "0,1"---"0,*" Category
+Category "0,*"-r-"1,1" Publication
+Data_Publication "0,*"-u-"1,1" Data
+Data_Publication "0,*"-u-"1,1" Publication
+Data "1,1"---"1,1" Path
+
+
+@enduml
+
+
+</center>
