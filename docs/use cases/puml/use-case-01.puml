@@ -18,6 +18,7 @@
     usecase "<b>UserAuth<b> \n Авторизація користувача" as UC_4
     usecase "<b>UserDataSuggestion<b> \n Пропозиції користувача \n щодо змін в даних" as UC_5
     usecase "<b>VisualizeData<b> \n Візуалізація даних" as UC_6
+    usecase "<b>RateData<b> \n Оцінка даних користувачем" as UC_R
     
     usecase "<b>AdminAuth<b> \n Авторизація адміністратора" as UC_7
     usecase "<b>AdminDataManagment<b> \n Управління даними в системі" as UC_8
@@ -27,6 +28,7 @@
     User -u-> UC_4
     User -l-> UC_5
     User -r-> UC_6
+    User -u-> UC_R
     
     Visitor -u-> UC_1  
     Visitor -u-> UC_2
