@@ -6,88 +6,82 @@
     >
 
 @startuml
-
-entity "User" <<ENTITY>>  {
-  + id <<INT>>
-  + login <<TEXT>>
-  + first_name <<TEXT>> 
-  + last_name <<TEXT>>
-  + password <<TEXT>> 
-  + email <<TEXT>> 
-  + role_ID <<INT>>
+package Data_Access{
+    entity "User" <<ENTITY>>  {
+      + id <<INT>>
+      + login <<TEXT>>
+      + first_name <<TEXT>> 
+      + last_name <<TEXT>>
+      + password <<TEXT>> 
+      + email <<TEXT>> 
+    }
+    
+    entity "Role" <<ENTITY>>  {
+      + id <<INT>> 
+      + alias <<TEXT>>
+    }
+    
+    entity "Permission_Role" {
+    
+    }
+    
+    entity "Permission" <<ENTITY>> {
+      + id <<INT>>
+      + alias <<TEXT>>
+    }
+    
+    entity "Access" <<ENTITY>>  {
+      + id <<INT>> 
+    }
+}
+package Resources{
+    entity "Dataset" <<ENTITY>>  {
+      + id <<INT>> 
+      + title <<TEXT>> 
+      + description <<TEXT>>
+      + rating <<FLOAT>>
+    }
+    
+    entity "Datafile" <<ENTITY>>  {
+      + id <<INT>> 
+      + guid <<GUID>>
+      + alias <<TEXT>> 
+      + mime <<TEXT>>
+      + description <<TEXT>>
+      + url <<URL>>
+      + size <<NUMBER>> 
+      + uploadedAt <<DATETIME>> 
+    }
+    
+    
+    entity "Category" <<ENTITY>>  {
+      + id <<INT>> 
+      + name <<TEXT>> 
+      + description <<TEXT>> 
+    }
 }
 
-entity "Role" <<ENTITY>>  {
-  + id <<INT>> 
-  + alias <<TEXT>>
+package Resource_Version_Control{
+
+    entity "Update" <<ENTITY>> {
+        + hash <<TEXT>>
+        + updatedAt <<DATETIME>>
+        + message <<TEXT>>
+        + diff <<TEXT>>
+    }
 }
-
-entity "Permission_Role" {
-  + permission_id <<INT>>
-  + role_id  <<INT>>
-}
-
-entity "Permission" <<ENTITY>> {
-  + id <<INT>>
-  + alias <<TEXT>>
-}
-
-entity "Access" <<ENTITY>>  {
-  + id <<INT>> 
-  + user_id <<INT>>
-  + publication_id <<INT>>
-}
-
-entity "Publication" <<ENTITY>>  {
-  + id <<INT>> 
-  + title <<TEXT>> 
-  + description <<TEXT>> 
-  + uploadedAt <<DATETIME>> 
-  + updatedAt <<DATETIME>> 
-  + body <<TEXT>>
-}
-
-entity "Data_Publication" <<ENTITY>>  {
-  + data_id <<INT>>
-  + publication_id <<INT>> 
-
-}
-
-entity "Path" <<ENTITY>>  {
-  + id <<INT>>
-  + path <<INT>> 
-
-}
-
-entity "Data" <<ENTITY>>  {
-  + id <<INT>> 
-  + alias <<TEXT>> 
-  + type <<TEXT>>
-  + path_id <<TEXT>>
-  + size <<TEXT>> 
-  + uploadedAt <<DATETIME>> 
-}
-
-
-entity "Category" <<ENTITY>>  {
-  + id <<INT>> 
-  + name <<TEXT>> 
-  + description <<TEXT>> 
-  + publication_id <<INT>>
-  + category_id <<INT>>
-}
-
-
-User "0.*"-u->"1.1" Role 
-Role "0.*"-l->"1.1" Permission_Role
-Permission_Role "0.*"-d->"1.1" Permission
-User "1.1"-d->"0.*" Access
-Access "0.*"-d->"1.1" Publication
-Data_Publication "0.*"-l->"1.1" Publication
-Data "1.1"-d->"0.*" Data_Publication
-Path "1.1"-d->"1.1" Data
-Category "1.1"-r->"0.*" Publication
-Category "0.1"-l->"0.*" Category
+User "0.*"-u->"1.1" Role : role
+Role "1.1"<-l-"0.*" Permission_Role : role
+Permission_Role "0.*"-l->"1.1" Permission : permission
+User "1.1"<-d-"0.*" Access:user
+Permission "1.1"<-d-"0.*" Access: permission
+Access "0.*"-->"1.1" Dataset:dataset
+Datafile "0.*"-->"0.1" Dataset:dataset
+Category "1.1"<-d-"0.*" Dataset: category
+Category "0.1"<-l-"0.*" Category :parent
+Datafile "0.*"-->"1.1" User :uploadedBy
+Update "0.*"-d->"1.1" User :user
+Update "0.*"-d->"1.1" Dataset: dataset
 
 
 
