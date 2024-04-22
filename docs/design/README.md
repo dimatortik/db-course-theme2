@@ -10,3 +10,5 @@
 <!-- @include: ./images/ER_model.puml -->
 
 ## Реляційна схема
+
+![](./images/db_course.pgerd.png)
